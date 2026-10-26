@@ -1,0 +1,16 @@
+https://killercoda.com/playgrounds/scenario/kubernetes
+Init Container
+Sidecar Container 
+Job
+Cronjob
+Metric Server
+Horizontal Pod AutoScalar (HPA)
+Vertical Pod Autoscalar (VPA)
+Configmaps
+Secrets
+Namespaces
+DaemonSet
+StatefulSet
+PV and PVC
+Storage Classes
+

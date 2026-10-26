@@ -1,0 +1,26 @@
+
+kubectl get ns
+        NAME                 STATUS   AGE
+        default              Active   21d  -- Where all infra will create on this namespace 
+        kube-node-lease      Active   21d
+        kube-public          Active   21d
+        kube-system          Active   21d -- store objects that created by kubernestes 
+
+kubectl -n default create cm config1 --from-literal=user=Raj --from-literal=password=Raj123 --dry-run=client -o yaml 
+kubectl -n default create cm congig1 --from-literal=user=Raj --from-literal=password=Raj123 --dry-run=client -o yaml > cm.yml
+kubectl -n default create -f cm.yml
+kubectl -n default get configmap 
+kubectl -n default describe congfigmap config1 
+kubectl -n default exec -it <configpodname> -- /bin/bash
+echo $user
+kubectl -n default delete configmap <configmapname>
+ 
+kubectl -n default create secret generic secret1 --from-literal=user=Raj --from-literal=password=Raj123 --dry-run=client -o yaml
+echo -n "secretnamebase64" | base64 -d;
+kubectl -n default create secret generic secret1 --from-literal=user=Raj --from-literal=password=Raj123 --dry-run=client -o yaml > secret.yml
+kubectl -n default create -f secret.yml 
+kubectl -n default get secrets 
+
+kubectl get pods -A  ---> list all pods from all namespaces 
+
+

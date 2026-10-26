@@ -1,0 +1,53 @@
+
+kubectl get ns
+        NAME                 STATUS   AGE
+        default              Active   21d  -- Where all infra will create on this namespace 
+        kube-node-lease      Active   21d
+        kube-public          Active   21d
+        kube-system          Active   21d
+
+kubectl -n default create -f abc.yml
+kubectl -n default get cronjob
+kubectl -n default get job
+kubectl -n default get pods
+
+To Enable METRIC SERVER on MINIKUBE
+minikube addons list
+minikube addons enable metrics-server
+kubectl -n default top nodes
+kubectl -n default top pods
+kubectl -n kube-system get pods | grep metrics-server
+kubectl -n kube-systemlogs deployment/metrics-server --tail=50
+kubectl -n kube-system edit deployment metrics-server 
+        - --kubelet-insecure-tls
+kubectl -n kube-system rollout status deploymen/metrics-server
+
+kubectl -n default create deployment deploy1 --replicas 2 --image nginx --dry-run=client -o yaml
+kubectl -n default create deployment deploy1 --replicas 2 --image nginx --dry-run=client -o yaml > dep.yml
+kubectl -n default create -f dep.yml
+kubectl -n default get deployments
+kubectl -n default describe deployment deploy1
+kubectl -n default get pods 
+kubectl -n default describe pod <podname>
+kubectl -n default exec -it <podname> -- /bin/bash 
+kubectl -n default logs <podname>
+kubectl -n default logs <podname> --previous
+kubectl -n default logs <podname> -c <containername> 
+kubectl -n default logs <podname> -c <containername> --previous
+kubectl -n default delete pod <podname>
+kubectl -n default delete deployment deploy1
+
+kubectl -n default autoscale deployment deploy1 --cpu 20 --min 2 --max 20 --dry-run=client -o yaml 
+kubectl -n default autosacle deployment deploy1 --cpu 20 --min 2 --mac 20 --dry-run=client -o yaml > hpa.yml
+kubectl -n default create -f hpa.yml 
+kubectl -n default get hpa 
+kubectl -n default describe hpa 
+
+apt upodate && apt install stress -y && stress -c 10
+
+
+
+
+
+
+
